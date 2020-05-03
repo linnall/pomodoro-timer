@@ -4,8 +4,27 @@ var s = document.getElementById('start');
 var swatch;
 var bwatch;
 
-var breakk = 5; //TO BE SET
-var study = 25; //
+timesData = {};
+var work;
+var breakk;
+
+
+chrome.storage.sync.get('data', function(res) {
+    if (res) {
+        timesData = res;
+        work = res.work;
+        breakk = res.break;
+    } else {
+        timesData = {work: 25, break: 5};
+        work = 25;
+        breakk = 5;
+    }
+});
+
+//var breakk = 5;
+//var work = 25; //
+
+var work = timesData
 
 function ensureRun(time, callback){
     time();
