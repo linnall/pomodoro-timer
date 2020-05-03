@@ -1,3 +1,5 @@
+var flag = false;
+
 function Timer(elem, settime){
 
     //elem.textContent = settime.toString() + " : " + "00";
@@ -11,13 +13,17 @@ function Timer(elem, settime){
     //PRIVATE FUNCTIONS
     //update the time displayed by timer
     function update(){
-        if (time == 0){
-            this.done = true;
-        }else{
+        
             time -= timepassed();
             var timeconverted = timeConversion(time);
-            elem.textContent = timeconverted;
-        }
+            if (timeconverted == 0){
+                elem.textContent = "00 : 00";
+                this.done = true;
+                flag = true;
+            } else
+            {
+                elem.textContent = timeconverted;
+            }
         
     }
 
@@ -31,6 +37,7 @@ function Timer(elem, settime){
 
     function timeConversion(init){
 
+        var time = new Date(init);
         var m = time.getMinutes().toString();
         var s = time.getSeconds().toString();
 

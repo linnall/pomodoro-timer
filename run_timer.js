@@ -1,40 +1,43 @@
 var timers = document.getElementById('timers');
 var timerb = document.getElementById('timerb');
+var s = document.getElementById('start');
+var swatch;
+var bwatch;
 
-var breakk; //TO BE SET
-var study; //
+var breakk = 5; //TO BE SET
+var study = 25; //
 
-chrome.storage.get(['work', 'break'], function(res){
-    breakk = res.break;
-    study = res.work;
-});
+function ensureRun(time, callback){
+    time();
+    bwatch = new Timer(timerb, breakk);
+    callback();
+}
 
-var swatch = new Timer(timbers, study);
-var bwatch = new Timer(timerb, breakk);
 
-timers.addEventListener('click', function(){
-    if (timers.on){
+s.addEventListener('click', function(){
+
+    /*chrome.storage.synch.get(['work', 'break'], function(res){
+        breakk = res.break;
+        study = res.work;*/
+        console.log("it idid it");
+
+        timers.textContent = study + " : " + "00";
+        timerb.textContent = breakk + " : " + "00";
+    
+
+    swatch = new Timer(timers, study);
+
+    if (swatch.on){
         swatch.stop();
     }else
     {
         swatch.start();
+
+        if (swatch.done){
+            bwatch = new Timer(timerb, breakk);
+            bwatch.start();
+        }
     }
+
 });
 
-timers.addEventListener('click', function(){
-    swatch.reset();
-});
-
-//break
-timerb.addEventListener('click', function(){
-    if (timerb.on){
-        bwatch.stop();
-    }else
-    {
-        bwatch.start();
-    }
-});
-
-timerb.addEventListener('click', function(){
-    bwatch.reset();
-});
