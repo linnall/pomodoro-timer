@@ -1,12 +1,6 @@
 'use strict';
 
-var breakk; //TO BE SET
-var study; //
 
-chrome.storage.get(['work', 'break'], function(res){
-    breakk = res.break;
-    study = res.study;
-});
 
 let changeColor = document.getElementById('changeColor');
 chrome.storage.sync.get('color', function(data) {
