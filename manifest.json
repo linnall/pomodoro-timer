@@ -3,6 +3,7 @@
     "version": "1.0",
     "description": "Let's you manage your study time",
     "permissions": ["tabs", "activeTab", "storage", "declarativeContent"],
+    "options_page": "options.html",
     "background": {
         "scripts": ["background.js"],
         "persistent": false

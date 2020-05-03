@@ -6,7 +6,7 @@ var study; //
 
 chrome.storage.get(['work', 'break'], function(res){
     breakk = res.break;
-    study = res.study;
+    study = res.work;
 });
 
 var swatch = new Timer(timbers, study);
